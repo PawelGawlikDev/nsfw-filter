@@ -4,13 +4,4 @@ import { defineConfig } from "wxt";
 export default defineConfig({
   extensionApi: "chrome",
   modules: ["@wxt-dev/module-react"],
-  manifest: {
-    permissions: ["storage", "activeTab", "tabs"],
-    web_accessible_resources: [
-      {
-        resources: ["models/"],
-        matches: ["<all_urls>"],
-      },
-    ],
-  },
 });
