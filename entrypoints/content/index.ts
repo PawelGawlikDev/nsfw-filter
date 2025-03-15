@@ -1,5 +1,5 @@
-import { DOMWatcher } from "./DOMWatcher/DOMWatcher";
-import { ImageFilter } from "./Filter/ImageFilter";
+import { DOMWatcher } from "./DOMWatcher";
+import { ImageFilter } from "./ImageFilter";
 
 export default defineContentScript({
   matches: ["http://*/*", "https://*/*"],
@@ -9,10 +9,11 @@ export default defineContentScript({
     const init = (): void => {
       const imageFilter = new ImageFilter();
       const domWatcher = new DOMWatcher(imageFilter);
+
       domWatcher.watch();
     };
 
-    // Ignore iframes, https://stackoverflow.com/a/326076/10432429
+    // Ignore iframes
     if (window.self === window.top) init();
-  },
+  }
 });
