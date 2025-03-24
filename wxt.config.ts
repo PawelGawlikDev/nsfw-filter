@@ -5,7 +5,7 @@ export default defineConfig({
   extensionApi: "chrome",
   modules: ["@wxt-dev/module-react"],
   manifest: {
-    permissions: ["offscreen"],
+    permissions: ["offscreen", "storage"],
     web_accessible_resources: [
       {
         resources: ["models/"],

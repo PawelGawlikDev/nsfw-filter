@@ -13,4 +13,13 @@ export default defineBackground(() => {
       });
     }
   })();
+  chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+    if (message.type === "GET_SETTINGS") {
+      filterStrictness.getValue().then((value) => {
+        sendResponse(value ?? 50);
+      });
+
+      return true;
+    }
+  });
 });

@@ -13,8 +13,14 @@ if (!prod) {
 nsfw
   .load("../models/", { type: "graph" })
   .then((loadedModel) => {
-    model = new Model(loadedModel, logger, { filterStrictness: 40 });
-    model.setSettings({ filterStrictness: 40 });
+    chrome.runtime.sendMessage({ type: "GET_SETTINGS" }, (response) => {
+      if (response !== undefined) {
+        model = new Model(loadedModel, logger, { filterStrictness: response });
+        model.setSettings({ filterStrictness: response });
+      } else {
+        console.error("[NSFW-Filter] Failed to get strictness settings.");
+      }
+    });
   })
   .catch((error) => {
     console.error(`[NSFW-Filter] Failed to load NSFW model: ${error}`);
@@ -42,6 +48,18 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
       console.error("[NSFW-Filter] Failed to load image for analysis");
       sendResponse(null);
     };
+
+    return true;
+  }
+
+  if (message.type === "UPDATE_STRICTNESS") {
+    if (model) {
+      model.setSettings({ filterStrictness: message.value });
+
+      logger.log(`[NSFW-Filter] Updated filter strictness to ${message.value}`);
+    } else {
+      logger.log("[NSFW-Filter] Model not initialized yet.");
+    }
 
     return true;
   }

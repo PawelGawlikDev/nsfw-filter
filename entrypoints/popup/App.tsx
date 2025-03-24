@@ -1,5 +1,6 @@
 import wxtLogo from "/wxt.svg";
 import "./App.css";
+import { Slider } from "@/components/Slider";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         </a>
       </div>
       <h1>NSFW Filter</h1>
+      <Slider />
     </>
   );
 }
