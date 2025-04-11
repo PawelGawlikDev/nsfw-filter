@@ -6,9 +6,17 @@ Built using TypeScript, [TensorFlow.js](https://www.tensorflow.org/js?hl=pl), [W
 
 When you load web pages, NSFW Filter will first hide all images and only show those classified as safe.
 
-# TODO
+# Test extension
 
-Add popup with allow customise sensitivity of AI model.
+NSFW:
+
+- https://i.imgur.com/bY536ZM.jpeg
+- https://i.imgur.com/y9aPMnm.jpg
+
+SFW:
+
+- http://i.imgur.com/0WkpMWf.jpg
+- http://i.imgur.com/0X9OHoH.jpg
 
 # Development
 
